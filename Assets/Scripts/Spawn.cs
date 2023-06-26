@@ -1,38 +1,36 @@
 using System.Collections;
-
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Spawn : MonoBehaviour
 {
-    public GameObject Tamplate; 
-
-   
+    [SerializeField] private Jellyfish Tamplate;   
+    
     private SpawnPoint[] _spawnPoints;
 
     private void Start()
     {
         _spawnPoints = gameObject.GetComponentsInChildren<SpawnPoint>();
-        StartCoroutine(ÑreateTamplate());
-        
+        StartCoroutine(CreateTamplate());        
     }
 
-    private IEnumerator ÑreateTamplate()
+    private IEnumerator CreateTamplate()
     {
         int numberPoint;
-        int CountSpawnPoints = _spawnPoints.Length;
+        int countSpawnPoints = _spawnPoints.Length;
+        int seconds = 2;
+        WaitForSeconds waitForSeconds = new WaitForSeconds(seconds);
 
         while (true)
         {
-            numberPoint = Random.Range(0,CountSpawnPoints);
-            ÑreateTamplate(_spawnPoints[numberPoint].transform.position);
+            numberPoint = Random.Range(0,countSpawnPoints);
+            CreateTamplate(_spawnPoints[numberPoint].transform.position);
 
-            yield return new WaitForSeconds(2);
+            yield return waitForSeconds;
         }
     }
-    public void ÑreateTamplate(Vector3 position)
-    {
-        GameObject newObject = Instantiate(Tamplate, position, Quaternion.identity);
+
+    public void CreateTamplate(Vector3 position)
+    {        
+        GameObject newObject = Instantiate(Tamplate.gameObject, position, Quaternion.identity);
     }
 }
