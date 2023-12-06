@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Spawn : MonoBehaviour
 {
-    [SerializeField] private Jellyfish Tamplate;   
+    [SerializeField] private Jellyfish _tamplate;   
     
     private SpawnPoint[] _spawnPoints;
 
@@ -31,6 +31,6 @@ public class Spawn : MonoBehaviour
 
     public void CreateTamplate(Vector3 position)
     {        
-        GameObject newObject = Instantiate(Tamplate.gameObject, position, Quaternion.identity);
+        GameObject newObject = Instantiate(_tamplate.gameObject, position, Quaternion.identity);
     }
 }
