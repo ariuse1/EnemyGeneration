@@ -6,6 +6,8 @@ public class Spawn : MonoBehaviour
     [SerializeField] private Jellyfish _tamplate;   
     
     private SpawnPoint[] _spawnPoints;
+    private Vector2 _direction  = Vector2.right;
+    private float _speed = 1.5f;
 
     private void Start()
     {
@@ -31,6 +33,7 @@ public class Spawn : MonoBehaviour
 
     public void CreateTamplate(Vector3 position)
     {        
-        GameObject newObject = Instantiate(_tamplate.gameObject, position, Quaternion.identity);
+        Jellyfish newObject = Instantiate(_tamplate, position, Quaternion.identity);
+        newObject.SetDirection(_direction, _speed);
     }
 }
